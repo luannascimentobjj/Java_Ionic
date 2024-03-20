@@ -2,6 +2,7 @@ package com.luannascimento.cursomc.services;
 
 import java.util.Optional;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,10 @@ public class CategoriaService {
 		
 		Optional<Categoria> categoriaObj = repo.findById(id);
 		
+		if(categoriaObj.isEmpty()) {
+			throw new ObjectNotFoundException("Objeto não encontrado! ID: " + id + ", Tipo"+ Categoria.class.getName(), categoriaObj);
+		}
+				
 		return categoriaObj;
 		
 	}
