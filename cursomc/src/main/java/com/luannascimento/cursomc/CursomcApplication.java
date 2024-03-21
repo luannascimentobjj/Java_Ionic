@@ -7,8 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.luannascimento.cursomc.domain.Categoria;
-import com.luannascimento.cursomc.domain.Produto;
+import com.luannascimento.cursomc.domains.Categoria;
+import com.luannascimento.cursomc.domains.Produto;
 import com.luannascimento.cursomc.repositories.CategoriaRepository;
 import com.luannascimento.cursomc.repositories.ProdutoRepository;
 
