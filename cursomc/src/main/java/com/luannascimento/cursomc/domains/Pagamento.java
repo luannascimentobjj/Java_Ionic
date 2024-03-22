@@ -4,18 +4,14 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import com.luannascimento.cursomc.domains.enums.EstadoPagamento;
-import com.luannascimento.cursomc.domains.enums.TipoCliente;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
