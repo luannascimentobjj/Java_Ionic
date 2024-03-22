@@ -44,6 +44,9 @@ public class Cliente implements Serializable{
 	@CollectionTable(name ="Telefone")
 	private Set<String> telefones = new HashSet<String>();
 	
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos = new ArrayList<>();
+	
 	
 	public Cliente(Integer id, String nome, String email, String cpfCnpj, TipoCliente tipo) {
 		super();
