@@ -3,6 +3,8 @@ package com.luannascimento.cursomc.domains;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -35,6 +37,7 @@ public class Endereco implements Serializable{
 	@JoinColumn(name = "cidade_id")
 	private Cidade cidade;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;

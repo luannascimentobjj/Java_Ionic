@@ -14,17 +14,17 @@ import com.luannascimento.cursomc.repositories.CategoriaRepository;
 public class CategoriaService {
 
 	@Autowired
-	private CategoriaRepository repo;
+	private CategoriaRepository categoriaRepository;
 	
 	public Optional<Categoria> buscar(Integer id) {
 		
-		Optional<Categoria> categoriaObj = repo.findById(id);
+		Optional<Categoria> categoria = categoriaRepository.findById(id);
 		
-		if(categoriaObj.isEmpty()) {
-			throw new ObjectNotFoundException("Objeto não encontrado! ID: " + id + ", Tipo"+ Categoria.class.getName());
+		if(categoria.isEmpty()) {
+			throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo"+ Categoria.class.getName());
 		}
 				
-		return categoriaObj;
+		return categoria;
 		
 	}
 	
