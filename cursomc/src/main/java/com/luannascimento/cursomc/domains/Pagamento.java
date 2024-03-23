@@ -3,6 +3,7 @@ package com.luannascimento.cursomc.domains;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.luannascimento.cursomc.domains.enums.EstadoPagamento;
 
 import jakarta.persistence.Entity;
@@ -27,6 +28,7 @@ public class Pagamento implements Serializable{
 	private Integer id;
 	private Integer estado;
 	
+	@JsonBackReference
 	@OneToOne
 	@JoinColumn(name = "pedido_id")
 	@MapsId
