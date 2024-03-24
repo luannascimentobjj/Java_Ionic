@@ -1,6 +1,7 @@
 package com.luannascimento.cursomc.resources;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.luannascimento.cursomc.domains.Categoria;
+import com.luannascimento.cursomc.dto.CategoriaDTO;
 import com.luannascimento.cursomc.services.CategoriaService;
 
 @RestController
@@ -60,6 +62,16 @@ public class CategoriaResource {
 		return ResponseEntity.noContent().build();
 		
 	}
+	
+	@GetMapping
+	public ResponseEntity<List<CategoriaDTO>> listarTodos() {
+		
+		
+		List<CategoriaDTO> cat1 = service.buscarTodos();
+				
+		return ResponseEntity.ok().body(cat1);
+	}
+
 	
 
 }

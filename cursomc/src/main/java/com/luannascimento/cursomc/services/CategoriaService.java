@@ -1,12 +1,16 @@
 package com.luannascimento.cursomc.services;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.luannascimento.cursomc.domains.Categoria;
+import com.luannascimento.cursomc.dto.CategoriaDTO;
 import com.luannascimento.cursomc.exceptions.DataIntegrityException;
 import com.luannascimento.cursomc.exceptions.ObjectNotFoundException;
 import com.luannascimento.cursomc.repositories.CategoriaRepository;
@@ -51,6 +55,19 @@ public class CategoriaService {
 		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
 		}
+		
+	}
+	
+	public List<CategoriaDTO> buscarTodos() {
+		
+		List<Categoria> listaCategoria = categoriaRepository.findAll();
+		List<CategoriaDTO> listDTO = listaCategoria.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+		
+		if(listDTO.isEmpty()) {
+			throw new ObjectNotFoundException("Objeto não encontrado!");
+		}
+				
+		return listDTO;
 		
 	}
 	
