@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class StandardError implements Serializable{
+public class StandardError implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

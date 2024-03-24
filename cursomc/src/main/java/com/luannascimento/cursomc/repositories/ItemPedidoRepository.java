@@ -6,12 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.luannascimento.cursomc.domains.ItemPedido;
 import com.luannascimento.cursomc.domains.ItemPedidoPK;
 
-
 @Repository
 public interface ItemPedidoRepository extends JpaRepository<ItemPedido, ItemPedidoPK> {
-
-
-
-		
 
 }

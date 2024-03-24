@@ -15,16 +15,15 @@ import com.luannascimento.cursomc.services.ClienteService;
 @RestController
 @RequestMapping("/clientes")
 public class ClienteResource {
-	
+
 	@Autowired
 	private ClienteService service;
-	
+
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Optional<Cliente>> listar(@PathVariable("id") Integer id) {
-		
-		
+
 		Optional<Cliente> cliente1 = service.buscar(id);
-				
+
 		return ResponseEntity.ok().body(cliente1);
 	}
 

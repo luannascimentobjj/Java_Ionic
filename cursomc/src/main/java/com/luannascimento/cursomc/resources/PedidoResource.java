@@ -15,16 +15,15 @@ import com.luannascimento.cursomc.services.PedidoService;
 @RestController
 @RequestMapping("/pedidos")
 public class PedidoResource {
-	
+
 	@Autowired
 	private PedidoService service;
-	
+
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Optional<Pedido>> listar(@PathVariable("id") Integer id) {
-		
-		
+
 		Optional<Pedido> ped1 = service.buscar(id);
-				
+
 		return ResponseEntity.ok().body(ped1);
 	}
 

@@ -2,7 +2,6 @@ package com.luannascimento.cursomc.services;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,23 +19,24 @@ public class CategoriaService {
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
-	
+
 	public Optional<Categoria> buscar(Integer id) {
-		
+
 		Optional<Categoria> categoria = categoriaRepository.findById(id);
-		
-		if(categoria.isEmpty()) {
-			throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo"+ Categoria.class.getName());
+
+		if (categoria.isEmpty()) {
+			throw new ObjectNotFoundException(
+					"Objeto não encontrado! Id: " + id + ", Tipo" + Categoria.class.getName());
 		}
-				
+
 		return categoria;
-		
+
 	}
 
 	public Categoria inserir(Categoria categoria) {
 		categoria.setId(null);
 		return categoriaRepository.save(categoria);
-		
+
 	}
 
 	public Categoria atualizar(Integer id, Categoria categoria) {
@@ -46,29 +46,30 @@ public class CategoriaService {
 	}
 
 	public void deletar(Integer id) {
-		
+
 		buscar(id);
 		try {
-			
+
 			categoriaRepository.deleteById(id);
-			
+
 		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
 		}
-		
+
 	}
-	
+
 	public List<CategoriaDTO> buscarTodos() {
-		
+
 		List<Categoria> listaCategoria = categoriaRepository.findAll();
-		List<CategoriaDTO> listDTO = listaCategoria.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
-		
-		if(listDTO.isEmpty()) {
+		List<CategoriaDTO> listDTO = listaCategoria.stream().map(obj -> new CategoriaDTO(obj))
+				.collect(Collectors.toList());
+
+		if (listDTO.isEmpty()) {
 			throw new ObjectNotFoundException("Objeto não encontrado!");
 		}
-				
+
 		return listDTO;
-		
+
 	}
-	
+
 }

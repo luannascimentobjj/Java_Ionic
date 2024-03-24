@@ -20,37 +20,36 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Pagamento implements Serializable{
+public class Pagamento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	private Integer id;
 	private Integer estado;
-	
+
 	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "pedido_id")
 	@MapsId
 	private Pedido pedido;
-	
-	
+
 	public Pagamento(Integer id, EstadoPagamento estado, Pedido pedido) {
 		super();
 		this.id = id;
 		this.estado = estado.getCod();
 		this.pedido = pedido;
 	}
-	
+
 	public EstadoPagamento getEstado() {
 		return EstadoPagamento.toEnum(estado);
 	}
-	
+
 	public void setEstado(EstadoPagamento estado) {
-			this.estado = estado.getCod();
-	
+		this.estado = estado.getCod();
+
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -62,12 +61,10 @@ public class Pagamento implements Serializable{
 		Pagamento other = (Pagamento) obj;
 		return Objects.equals(id, other.id);
 	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
 
-
-	
-	
 }

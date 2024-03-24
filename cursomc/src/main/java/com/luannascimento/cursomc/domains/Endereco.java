@@ -19,11 +19,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Endereco implements Serializable{
-	
+public class Endereco implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -32,17 +31,16 @@ public class Endereco implements Serializable{
 	private String complemento;
 	private String bairro;
 	private String cep;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "cidade_id")
 	private Cidade cidade;
-	
+
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
-	
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -54,11 +52,10 @@ public class Endereco implements Serializable{
 		Endereco other = (Endereco) obj;
 		return Objects.equals(id, other.id);
 	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-	
-	
 
 }

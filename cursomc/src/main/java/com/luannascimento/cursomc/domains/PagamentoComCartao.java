@@ -11,8 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-public class PagamentoComCartao extends Pagamento{
-	
+public class PagamentoComCartao extends Pagamento {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,7 +21,5 @@ public class PagamentoComCartao extends Pagamento{
 		super(id, estado, pedido);
 		this.numeroDeParcelas = numeroDeParcelas;
 	}
-	
-	
 
 }

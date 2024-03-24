@@ -20,13 +20,13 @@ import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @NoArgsConstructor
 @Entity
-public class Produto implements Serializable {/**
-	 * 
-	 */
+public class Produto implements Serializable {
+	/**
+	* 
+	*/
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -34,20 +34,18 @@ public class Produto implements Serializable {/**
 	private Integer id;
 	private String nome;
 	private Double preço;
-	
+
 	@JsonIgnore
 	@ManyToMany
-	@JoinTable(name ="Produto_Categoria", 
-		joinColumns = @JoinColumn(name = "produto_id"), 
-		inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+	@JoinTable(name = "Produto_Categoria", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
 	private List<Categoria> categorias = new ArrayList<Categoria>();
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "id.produto")
 	private Set<ItemPedido> itens = new HashSet<>();
-	
+
 	@JsonIgnore
-	public List<Pedido> getPedidos(){
+	public List<Pedido> getPedidos() {
 		List<Pedido> lista = new ArrayList<Pedido>();
 		for (ItemPedido x : itens) {
 			lista.add(x.getPedido());
@@ -78,6 +76,5 @@ public class Produto implements Serializable {/**
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-	
-	
+
 }

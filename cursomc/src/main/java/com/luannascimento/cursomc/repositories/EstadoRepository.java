@@ -7,6 +7,5 @@ import com.luannascimento.cursomc.domains.Estado;
 
 @Repository
 public interface EstadoRepository extends JpaRepository<Estado, Integer> {
-	
 
 }

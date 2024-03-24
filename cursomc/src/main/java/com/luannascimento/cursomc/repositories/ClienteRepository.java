@@ -7,6 +7,5 @@ import com.luannascimento.cursomc.domains.Cliente;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
-	
 
 }

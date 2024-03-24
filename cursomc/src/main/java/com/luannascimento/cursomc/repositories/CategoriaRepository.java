@@ -7,6 +7,5 @@ import com.luannascimento.cursomc.domains.Categoria;
 
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
-	
 
 }

@@ -7,6 +7,5 @@ import com.luannascimento.cursomc.domains.Endereco;
 
 @Repository
 public interface EnderecoRepository extends JpaRepository<Endereco, Integer> {
-	
 
 }

@@ -14,17 +14,17 @@ public class PedidoService {
 
 	@Autowired
 	private PedidoRepository pedidoRepository;
-	
+
 	public Optional<Pedido> buscar(Integer id) {
-		
+
 		Optional<Pedido> pedido = pedidoRepository.findById(id);
-		
-		if(pedido.isEmpty()) {
-			throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo"+ Pedido.class.getName());
+
+		if (pedido.isEmpty()) {
+			throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo" + Pedido.class.getName());
 		}
-				
+
 		return pedido;
-		
+
 	}
-	
+
 }

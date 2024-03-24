@@ -7,6 +7,5 @@ import com.luannascimento.cursomc.domains.Pedido;
 
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
-	
 
 }

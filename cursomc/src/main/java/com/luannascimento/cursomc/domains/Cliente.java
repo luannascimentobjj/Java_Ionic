@@ -20,12 +20,11 @@ import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @NoArgsConstructor
 @Entity
-public class Cliente implements Serializable{
-	
+public class Cliente implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -35,20 +34,18 @@ public class Cliente implements Serializable{
 	private String email;
 	private String cpfCnpj;
 	private Integer tipo;
-	
-	
+
 	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos = new ArrayList<>();
-	
+
 	@ElementCollection
-	@CollectionTable(name ="Telefone")
+	@CollectionTable(name = "Telefone")
 	private Set<String> telefones = new HashSet<String>();
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
-	
-	
+
 	public Cliente(Integer id, String nome, String email, String cpfCnpj, TipoCliente tipo) {
 		super();
 		this.id = id;
@@ -57,14 +54,14 @@ public class Cliente implements Serializable{
 		this.cpfCnpj = cpfCnpj;
 		this.tipo = tipo.getCod();
 	}
-		
+
 	public TipoCliente getTipo() {
 		return TipoCliente.toEnum(tipo);
 	}
-	
+
 	public void setTipo(TipoCliente tipo) {
-			this.tipo = tipo.getCod();
-	
+		this.tipo = tipo.getCod();
+
 	}
 
 	@Override
@@ -84,6 +81,4 @@ public class Cliente implements Serializable{
 		return Objects.hash(id);
 	}
 
-	
-	
 }

@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-public class Estado implements Serializable{
+public class Estado implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -30,14 +30,12 @@ public class Estado implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy = "estado")
 	private List<Cidade> cidades = new ArrayList<>();
-	
 
 	public Estado(Integer id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -51,11 +49,9 @@ public class Estado implements Serializable{
 		return Objects.equals(id, other.id);
 	}
 
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-	
-	
+
 }

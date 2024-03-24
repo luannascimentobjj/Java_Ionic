@@ -7,6 +7,5 @@ import com.luannascimento.cursomc.domains.Produto;
 
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
-	
 
 }
