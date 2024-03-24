@@ -20,7 +20,7 @@ public class PedidoResource {
 	private PedidoService service;
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<?> listar(@PathVariable("id") Integer id) {
+	public ResponseEntity<Optional<Pedido>> listar(@PathVariable("id") Integer id) {
 		
 		
 		Optional<Pedido> ped1 = service.buscar(id);

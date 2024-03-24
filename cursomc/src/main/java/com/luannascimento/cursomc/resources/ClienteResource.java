@@ -20,7 +20,7 @@ public class ClienteResource {
 	private ClienteService service;
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<?> listar(@PathVariable("id") Integer id) {
+	public ResponseEntity<Optional<Cliente>> listar(@PathVariable("id") Integer id) {
 		
 		
 		Optional<Cliente> cliente1 = service.buscar(id);
