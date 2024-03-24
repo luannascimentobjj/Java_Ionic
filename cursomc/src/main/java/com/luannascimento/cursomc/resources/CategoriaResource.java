@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.data.domain.Page;
 
 import com.luannascimento.cursomc.domains.Categoria;
 import com.luannascimento.cursomc.dto.CategoriaDTO;
@@ -68,6 +70,18 @@ public class CategoriaResource {
 		List<CategoriaDTO> cat1 = service.buscarTodos();
 
 		return ResponseEntity.ok().body(cat1);
+	}
+
+	@GetMapping(value= "/paginar")
+	public ResponseEntity<Page<CategoriaDTO>> listarPorPagina(
+			@RequestParam(value = "pagina", defaultValue = "0") Integer pagina,
+			@RequestParam(value = "linhaPorPagina", defaultValue = "24") Integer linhaPorPagina,
+			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
+			@RequestParam(value = "orderarPor", defaultValue = "nome") String orderarPor) {
+
+		 Page<CategoriaDTO> catPaginada =  service.buscaPaginada(pagina, linhaPorPagina, orderarPor, direction);
+
+		return ResponseEntity.ok().body(catPaginada);
 	}
 
 }

@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.luannascimento.cursomc.domains.Categoria;
@@ -67,6 +70,15 @@ public class CategoriaService {
 		if (listDTO.isEmpty()) {
 			throw new ObjectNotFoundException("Objeto não encontrado!");
 		}
+
+		return listDTO;
+
+	}
+
+	public Page<CategoriaDTO> buscaPaginada(Integer pagina, Integer linhaPorPagina, String orderarPor, String direction) {
+
+		PageRequest pageRequest = PageRequest.of(pagina, linhaPorPagina, Direction.valueOf(direction), orderarPor);
+		Page<CategoriaDTO> listDTO = categoriaRepository.findAll(pageRequest).map(obj -> new CategoriaDTO(obj));
 
 		return listDTO;
 
