@@ -22,6 +22,8 @@ import com.luannascimento.cursomc.domains.Categoria;
 import com.luannascimento.cursomc.dto.CategoriaDTO;
 import com.luannascimento.cursomc.services.CategoriaService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/categorias")
 public class CategoriaResource {
@@ -38,9 +40,9 @@ public class CategoriaResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<Void> inserir(@RequestBody Categoria categoria) {
+	public ResponseEntity<Void> inserir(@Valid @RequestBody CategoriaDTO categoriaDTO) {
 
-		categoria = service.inserir(categoria);
+		Categoria categoria = service.inserir(service.convertFromDTO(categoriaDTO));
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoria.getId())
 				.toUri();
 
@@ -49,9 +51,9 @@ public class CategoriaResource {
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Void> atualizar(@PathVariable("id") Integer id, @RequestBody Categoria categoria) {
+	public ResponseEntity<Void> atualizar( @PathVariable("id") Integer id, @Valid @RequestBody CategoriaDTO categoriaDTO) {
 
-		categoria = service.atualizar(id, categoria);
+		service.atualizar(id, service.convertFromDTO(categoriaDTO));
 		return ResponseEntity.noContent().build();
 
 	}
