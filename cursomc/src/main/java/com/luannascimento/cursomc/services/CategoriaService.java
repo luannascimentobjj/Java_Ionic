@@ -43,9 +43,17 @@ public class CategoriaService {
 	}
 
 	public void atualizar(Categoria categoria) {
-		buscar(categoria.getId());
-		categoriaRepository.save(categoria);
+		
+		categoriaRepository.save(updateData(buscar(categoria.getId()), categoria));
+		
 
+	}
+
+	private Categoria updateData(Optional<Categoria> optional, Categoria categoria) {
+
+		categoria.setNome(optional.get().getNome());
+
+		return categoria;
 	}
 
 	public void deletar(Integer id) {
@@ -75,7 +83,8 @@ public class CategoriaService {
 
 	}
 
-	public Page<CategoriaDTO> buscaPaginada(Integer pagina, Integer linhaPorPagina, String orderarPor, String direction) {
+	public Page<CategoriaDTO> buscaPaginada(Integer pagina, Integer linhaPorPagina, String orderarPor,
+			String direction) {
 
 		PageRequest pageRequest = PageRequest.of(pagina, linhaPorPagina, Direction.valueOf(direction), orderarPor);
 		Page<CategoriaDTO> listDTO = categoriaRepository.findAll(pageRequest).map(obj -> new CategoriaDTO(obj));
@@ -83,12 +92,12 @@ public class CategoriaService {
 		return listDTO;
 
 	}
-	
-	public Categoria convertFromDTO (Integer id, CategoriaDTO dto) {
+
+	public Categoria convertFromDTO(Integer id, CategoriaDTO dto) {
 		return new Categoria(id, dto.getNome());
 	}
-	
-	public Categoria convertFromDTO (CategoriaDTO dto) {
+
+	public Categoria convertFromDTO(CategoriaDTO dto) {
 		return new Categoria(dto.getNome());
 	}
 
