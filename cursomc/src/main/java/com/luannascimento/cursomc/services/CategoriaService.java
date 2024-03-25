@@ -42,8 +42,8 @@ public class CategoriaService {
 
 	}
 
-	public void atualizar(Integer id, Categoria categoria) {
-		buscar(id);
+	public void atualizar(Categoria categoria) {
+		buscar(categoria.getId());
 		categoriaRepository.save(categoria);
 
 	}
@@ -84,8 +84,12 @@ public class CategoriaService {
 
 	}
 	
+	public Categoria convertFromDTO (Integer id, CategoriaDTO dto) {
+		return new Categoria(id, dto.getNome());
+	}
+	
 	public Categoria convertFromDTO (CategoriaDTO dto) {
-		return new Categoria(dto.getId(), dto.getNome());
+		return new Categoria(dto.getNome());
 	}
 
 }

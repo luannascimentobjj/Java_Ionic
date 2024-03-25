@@ -37,9 +37,9 @@ public class ClienteResource {
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Void> atualizar( @PathVariable("id") Integer id, @Valid @RequestBody ClienteDTO ClienteDTO) {
+	public ResponseEntity<Void> atualizar( @PathVariable("id") Integer id, @Valid @RequestBody ClienteDTO clienteDTO) {
 
-		service.atualizar(id, service.convertFromDTO(ClienteDTO));
+		service.atualizar(service.convertFromDTO(id, clienteDTO));
 		return ResponseEntity.noContent().build();
 
 	}

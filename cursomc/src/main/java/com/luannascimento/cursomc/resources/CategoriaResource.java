@@ -53,7 +53,7 @@ public class CategoriaResource {
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Void> atualizar( @PathVariable("id") Integer id, @Valid @RequestBody CategoriaDTO categoriaDTO) {
 
-		service.atualizar(id, service.convertFromDTO(categoriaDTO));
+		service.atualizar(service.convertFromDTO(id, categoriaDTO));
 		return ResponseEntity.noContent().build();
 
 	}

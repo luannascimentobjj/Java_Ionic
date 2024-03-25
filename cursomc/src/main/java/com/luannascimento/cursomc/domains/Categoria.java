@@ -33,5 +33,11 @@ public class Categoria implements Serializable {
 		this.nome = nome;
 
 	}
+	
+	public Categoria(String nome) {
+		super();
+		this.nome = nome;
+
+	}
 
 }

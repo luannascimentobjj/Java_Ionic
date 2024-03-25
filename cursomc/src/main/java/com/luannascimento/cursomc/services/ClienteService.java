@@ -34,17 +34,25 @@ public class ClienteService {
 		return cliente;
 
 	}
-	
+
 	public Cliente inserir(Cliente Cliente) {
 		Cliente.setId(null);
 		return clienteRepository.save(Cliente);
 
 	}
 
-	public void atualizar(Integer id, Cliente Cliente) {
-		buscar(id);
-		clienteRepository.save(Cliente);
+	public void atualizar(Cliente cliente) {
 
+		clienteRepository.save(updateData(buscar(cliente.getId()), cliente));
+
+	}
+
+	private Cliente updateData(Optional<Cliente> optional, Cliente cliente) {
+
+		cliente.setTipo(optional.get().getTipo());
+		cliente.setCpfCnpj(optional.get().getCpfCnpj());
+
+		return cliente;
 	}
 
 	public void deletar(Integer id) {
@@ -55,7 +63,7 @@ public class ClienteService {
 			clienteRepository.deleteById(id);
 
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir uma Cliente que possui produtos");
+			throw new DataIntegrityException("Não é possível excluir uma cliente que possui pedidos");
 		}
 
 	}
@@ -63,8 +71,7 @@ public class ClienteService {
 	public List<ClienteDTO> buscarTodos() {
 
 		List<Cliente> listaCliente = clienteRepository.findAll();
-		List<ClienteDTO> listDTO = listaCliente.stream().map(obj -> new ClienteDTO(obj))
-				.collect(Collectors.toList());
+		List<ClienteDTO> listDTO = listaCliente.stream().map(obj -> new ClienteDTO(obj)).collect(Collectors.toList());
 
 		if (listDTO.isEmpty()) {
 			throw new ObjectNotFoundException("Objeto não encontrado!");
@@ -82,9 +89,9 @@ public class ClienteService {
 		return listDTO;
 
 	}
-	
-	public Cliente convertFromDTO (ClienteDTO dto) {
-		return new Cliente(dto.getId(), dto.getNome(), dto.getEmail());
+
+	public Cliente convertFromDTO(Integer id, ClienteDTO dto) {
+		return new Cliente(id, dto.getNome(), dto.getEmail());
 	}
 
 }
