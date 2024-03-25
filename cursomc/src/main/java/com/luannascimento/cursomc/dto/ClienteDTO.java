@@ -5,6 +5,7 @@ import java.io.Serializable;
 import org.hibernate.validator.constraints.Length;
 
 import com.luannascimento.cursomc.domains.Cliente;
+import com.luannascimento.cursomc.services.validation.ClienteInsert;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@ClienteInsert
 public class ClienteDTO implements Serializable {
 
 
@@ -27,13 +29,18 @@ public class ClienteDTO implements Serializable {
 	@Email(message = "Email inválido")
 	private String email;
 	
+	@NotEmpty(message = "Preenchimento Obrigatório!")
 	private String cpfCnpj;
 	private Integer tipo;
+	@NotEmpty(message = "Preenchimento Obrigatório!")
 	private String logradouro;
+	@NotEmpty(message = "Preenchimento Obrigatório!")
 	private String numero;
 	private String complemento;
 	private String bairro;
+	@NotEmpty(message = "Preenchimento Obrigatório!")
 	private String cep;
+	@NotEmpty(message = "Preenchimento Obrigatório!")
 	private String telefone1;
 	private String telefone2;
 	private String telefone3;
