@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.hibernate.validator.constraints.Length;
 
 import com.luannascimento.cursomc.domains.Cliente;
-import com.luannascimento.cursomc.services.validation.ClienteInsert;
+import com.luannascimento.cursomc.services.validation.ClienteBusiness;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@ClienteInsert
+@ClienteBusiness
 public class ClienteDTO implements Serializable {
 
 

@@ -8,10 +8,10 @@ import java.lang.annotation.Target;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
-@Constraint(validatedBy = ClienteInsertValidator.class)
+@Constraint(validatedBy = ClienteBusinessValidator.class)
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ClienteInsert {
+public @interface ClienteBusiness {
 	
 	String message() default "Erro de validação";
 	
