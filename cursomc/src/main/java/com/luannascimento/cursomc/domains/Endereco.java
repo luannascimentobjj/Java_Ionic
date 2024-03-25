@@ -41,6 +41,18 @@ public class Endereco implements Serializable {
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
+	public Endereco(String logradouro, String numero, String complemento, String bairro, String cep, Cidade cidade,
+			Cliente cliente) {
+		super();
+		this.logradouro = logradouro;
+		this.numero = numero;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.cep = cep;
+		this.cidade = cidade;
+		this.cliente = cliente;
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -57,5 +69,7 @@ public class Endereco implements Serializable {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+
+
 
 }

@@ -10,12 +10,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.luannascimento.cursomc.domains.Categoria;
 import com.luannascimento.cursomc.dto.CategoriaDTO;
 import com.luannascimento.cursomc.exceptions.DataIntegrityException;
 import com.luannascimento.cursomc.exceptions.ObjectNotFoundException;
 import com.luannascimento.cursomc.repositories.CategoriaRepository;
+
+
 
 @Service
 public class CategoriaService {
@@ -36,6 +39,7 @@ public class CategoriaService {
 
 	}
 
+	@Transactional
 	public Categoria inserir(Categoria categoria) {
 		categoria.setId(null);
 		return categoriaRepository.save(categoria);

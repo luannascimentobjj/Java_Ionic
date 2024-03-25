@@ -27,6 +27,17 @@ public class ClienteDTO implements Serializable {
 	@Email(message = "Email inválido")
 	private String email;
 	
+	private String cpfCnpj;
+	private Integer tipo;
+	private String logradouro;
+	private String numero;
+	private String complemento;
+	private String bairro;
+	private String cep;
+	private String telefone1;
+	private String telefone2;
+	private String telefone3;
+	private Integer cidadeId;
 	
 	public ClienteDTO(Cliente cliente) {
 		super();
