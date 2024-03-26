@@ -3,7 +3,13 @@ package com.luannascimento.cursomc.domains;
 import java.io.Serializable;
 import java.util.Objects;
 
+
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+
+
 import com.luannascimento.cursomc.domains.enums.EstadoPagamento;
 
 import jakarta.persistence.Entity;
@@ -20,12 +26,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Pagamento implements Serializable {
+@JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, include = As.PROPERTY, property = "@type" )
+public abstract class Pagamento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	private Integer id;
+	
 	private Integer estado;
 
 	@JsonIgnore

@@ -1,5 +1,6 @@
 package com.luannascimento.cursomc.domains;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.luannascimento.cursomc.domains.enums.EstadoPagamento;
 
 import jakarta.persistence.Entity;
@@ -11,6 +12,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
+@JsonTypeName("pagamentoComCartao")
 public class PagamentoComCartao extends Pagamento {
 
 	private static final long serialVersionUID = 1L;

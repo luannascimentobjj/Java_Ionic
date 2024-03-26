@@ -17,6 +17,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -34,7 +35,8 @@ public class Pedido implements Serializable {
 	@JsonFormat(pattern = "dd/MM/yyyy hh:mm")
 	private Date instante;
 
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
+	@OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
 	private Pagamento pagamento;
 
 	@ManyToOne
