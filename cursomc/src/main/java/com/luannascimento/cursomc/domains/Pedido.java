@@ -17,7 +17,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.PrimaryKeyJoinColumn;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -32,11 +31,10 @@ public class Pedido implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@JsonFormat(pattern = "dd/MM/yyyy hh:mm")
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date instante;
 
-	@OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
+	@OneToOne(cascade=CascadeType.ALL, mappedBy="pedido")
 	private Pagamento pagamento;
 
 	@ManyToOne
@@ -50,6 +48,14 @@ public class Pedido implements Serializable {
 	@OneToMany(mappedBy = "id.pedido")
 	private Set<ItemPedido> itens = new HashSet<>();
 
+	public Pedido(Integer id, Date instante, Cliente cliente, Endereco enderecoDeEntrega) {
+		super();
+		this.id = id;
+		this.instante = instante;
+		this.cliente = cliente;
+		this.enderecoDeEntrega = enderecoDeEntrega;
+	}
+	
 	public double getValorTotal() {
 		
 		double soma = 0.0;
@@ -77,12 +83,6 @@ public class Pedido implements Serializable {
 		return Objects.hash(id);
 	}
 
-	public Pedido(Integer id, Date instante, Cliente cliente, Endereco enderecoDeEntrega) {
-		super();
-		this.id = id;
-		this.instante = instante;
-		this.cliente = cliente;
-		this.enderecoDeEntrega = enderecoDeEntrega;
-	}
+
 
 }

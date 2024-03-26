@@ -33,7 +33,6 @@ public abstract class Pagamento implements Serializable {
 
 	@Id
 	private Integer id;
-	
 	private Integer estado;
 
 	@JsonIgnore
@@ -67,7 +66,12 @@ public abstract class Pagamento implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Pagamento other = (Pagamento) obj;
-		return Objects.equals(id, other.id);
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 
 	@Override

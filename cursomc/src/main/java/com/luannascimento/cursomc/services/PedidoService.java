@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.luannascimento.cursomc.domains.ItemPedido;
 import com.luannascimento.cursomc.domains.PagamentoComBoleto;
@@ -45,7 +46,7 @@ public class PedidoService {
 		return pedido;
 
 	}
-	
+	@Transactional
 	public Pedido inserir(Pedido ped) {
 		ped.setId(null);
 		ped.setInstante(new Date());
