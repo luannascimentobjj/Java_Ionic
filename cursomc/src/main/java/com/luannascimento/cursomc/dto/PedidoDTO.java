@@ -15,11 +15,6 @@ import com.luannascimento.cursomc.domains.ItemPedido;
 import com.luannascimento.cursomc.domains.Pagamento;
 import com.luannascimento.cursomc.domains.Pedido;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -44,18 +39,14 @@ public class PedidoDTO implements Serializable {
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date instante;
 
-	@OneToOne(cascade=CascadeType.ALL, mappedBy="pedido")
 	private Pagamento pagamento;
 
-	@ManyToOne
-	@JoinColumn(name = "cliente_id")
+	
 	private Cliente cliente;
 
-	@ManyToOne
-	@JoinColumn(name = "endereco_de_entrega_id")
 	private Endereco enderecoDeEntrega;
 
-	@OneToMany(mappedBy = "id.pedido")
+	
 	private Set<ItemPedido> itens = new HashSet<>();
 
 	
