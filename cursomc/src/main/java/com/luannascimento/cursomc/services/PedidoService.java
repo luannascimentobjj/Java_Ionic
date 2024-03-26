@@ -56,6 +56,7 @@ public class PedidoService {
 			boletoService.preencherPagamentoComBoleto(pagto, ped.getInstante());
 		}
 		
+		ped.getPagamento().setPedido(ped);
 		ped = pedidoRepository.save(ped);
 		pagamentoRepository.save(ped.getPagamento());
 		
