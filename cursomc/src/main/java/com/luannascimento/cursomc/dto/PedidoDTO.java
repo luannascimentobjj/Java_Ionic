@@ -5,17 +5,13 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.hibernate.validator.constraints.Length;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.luannascimento.cursomc.domains.Categoria;
 import com.luannascimento.cursomc.domains.Cliente;
 import com.luannascimento.cursomc.domains.Endereco;
 import com.luannascimento.cursomc.domains.ItemPedido;
 import com.luannascimento.cursomc.domains.Pagamento;
 import com.luannascimento.cursomc.domains.Pedido;
 
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -26,26 +22,15 @@ public class PedidoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-	
-	@NotEmpty(message = "Preenchimento Obrigatório!")
-	@Length(min = 5, max = 80, message = "O tamanho deve ser entre 5 e 80 caracteres")
-	private String nome;
 
-	public PedidoDTO(Categoria categoria) {
-		id = categoria.getId();
-		nome = categoria.getNome();
-	}
-	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date instante;
-
+	
 	private Pagamento pagamento;
 
-	
 	private Cliente cliente;
 
 	private Endereco enderecoDeEntrega;
-
 	
 	private Set<ItemPedido> itens = new HashSet<>();
 

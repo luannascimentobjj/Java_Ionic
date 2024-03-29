@@ -11,10 +11,13 @@ import com.luannascimento.cursomc.domains.ItemPedido;
 import com.luannascimento.cursomc.domains.PagamentoComBoleto;
 import com.luannascimento.cursomc.domains.Pedido;
 import com.luannascimento.cursomc.domains.enums.EstadoPagamento;
+import com.luannascimento.cursomc.dto.PedidoDTO;
 import com.luannascimento.cursomc.exceptions.ObjectNotFoundException;
 import com.luannascimento.cursomc.repositories.ItemPedidoRepository;
 import com.luannascimento.cursomc.repositories.PagamentoRepository;
 import com.luannascimento.cursomc.repositories.PedidoRepository;
+
+
 
 @Service
 public class PedidoService {
@@ -71,6 +74,11 @@ public class PedidoService {
 		itemPedidoRepository.saveAll(ped.getItens());
 		
 		return ped;
+	}
+
+	public Pedido convertFromDTO(PedidoDTO pedidoDTO) {
+		
+		return new Pedido(pedidoDTO.getId(), pedidoDTO.getPagamento(), pedidoDTO.getInstante(), pedidoDTO.getCliente(), pedidoDTO.getEnderecoDeEntrega());
 	}
 
 }

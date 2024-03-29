@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.luannascimento.cursomc.domains.Pedido;
+import com.luannascimento.cursomc.dto.PedidoDTO;
 import com.luannascimento.cursomc.services.PedidoService;
 
 import jakarta.validation.Valid;
@@ -35,9 +36,10 @@ public class PedidoResource {
 	
 
 	@PostMapping
-	public ResponseEntity<Void> inserir(@Valid @RequestBody Pedido pedido) {
+	public ResponseEntity<Void> inserir(@Valid @RequestBody PedidoDTO pedidoDTO) {
 		
-		pedido = service.inserir(pedido);
+		
+		Pedido pedido = service.inserir(service.convertFromDTO(pedidoDTO));
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(pedido.getId())
 				.toUri();
 

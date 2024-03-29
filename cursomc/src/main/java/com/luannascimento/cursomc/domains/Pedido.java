@@ -56,6 +56,17 @@ public class Pedido implements Serializable {
 		this.enderecoDeEntrega = enderecoDeEntrega;
 	}
 	
+
+	public Pedido(Integer id, Pagamento pagamento, Date instante, Cliente cliente, Endereco enderecoDeEntrega) {
+		super();
+		this.id = id;
+		this.pagamento = pagamento;
+		this.instante = instante;
+		this.cliente = cliente;
+		this.enderecoDeEntrega = enderecoDeEntrega;
+		
+	}
+	
 	public double getValorTotal() {
 		
 		double soma = 0.0;
