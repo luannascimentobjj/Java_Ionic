@@ -78,7 +78,7 @@ public class ItemPedido implements Serializable {
 
 	@Override
 	public String toString() {
-		NumberFormat nf = NumberFormat.getNumberInstance(Locale.of("pt", "BR"));
+		NumberFormat nf = NumberFormat.getNumberInstance(Locale.of("pt-BR", "BR"));
 		StringBuilder builder = new StringBuilder();
 		builder.append(getProduto().getNome());
 		builder.append(", Quantidade: ");
