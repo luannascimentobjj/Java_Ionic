@@ -62,13 +62,14 @@ public class Pedido implements Serializable {
 	}
 	
 
-	public Pedido(Integer id, Pagamento pagamento, Date instante, Cliente cliente, Endereco enderecoDeEntrega) {
+	public Pedido(Integer id, Pagamento pagamento, Date instante, Cliente cliente, Endereco enderecoDeEntrega, Set<ItemPedido> itens) {
 		super();
 		this.id = id;
 		this.pagamento = pagamento;
 		this.instante = instante;
 		this.cliente = cliente;
 		this.enderecoDeEntrega = enderecoDeEntrega;
+		this.itens = itens;
 		
 	}
 	
@@ -102,7 +103,7 @@ public class Pedido implements Serializable {
 
 	@Override
 	public String toString() {
-		NumberFormat nf = NumberFormat.getNumberInstance(Locale.of("pt", "BR"));
+		NumberFormat nf = NumberFormat.getNumberInstance(Locale.of("pt-BR", "BR"));
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 		StringBuilder builder = new StringBuilder();
 		builder.append("Pedido número: ");

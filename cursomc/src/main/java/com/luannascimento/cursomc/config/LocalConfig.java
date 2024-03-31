@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.luannascimento.cursomc.services.DBService;
+import com.luannascimento.cursomc.services.EmailService;
+import com.luannascimento.cursomc.services.MockEmailService;
 
 @Configuration
 @Profile("local")
@@ -31,5 +33,10 @@ public class LocalConfig {
 		return true;
 	
 	}
+
+    @Bean
+    EmailService emailService() {
+    	return new MockEmailService();
+    }
 
 }

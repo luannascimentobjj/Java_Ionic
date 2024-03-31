@@ -41,6 +41,9 @@ public class PedidoService {
 	@Autowired
 	private ClienteService clienteService;
 	
+	@Autowired
+	private EmailService emailService;
+	
 	public Optional<Pedido> buscar(Integer id) {
 
 		Optional<Pedido> pedido = pedidoRepository.findById(id);
@@ -76,14 +79,14 @@ public class PedidoService {
 		}
 		
 		itemPedidoRepository.saveAll(ped.getItens());
-		System.out.println(ped);
+		emailService.sendOrderConfirmationEmail(ped);
 		
 		return ped;
 	}
 
 	public Pedido convertFromDTO(PedidoDTO pedidoDTO) {
 		
-		return new Pedido(pedidoDTO.getId(), pedidoDTO.getPagamento(), pedidoDTO.getInstante(), pedidoDTO.getCliente(), pedidoDTO.getEnderecoDeEntrega());
+		return new Pedido(pedidoDTO.getId(), pedidoDTO.getPagamento(), pedidoDTO.getInstante(), pedidoDTO.getCliente(), pedidoDTO.getEnderecoDeEntrega(), pedidoDTO.getItens());
 	}
 
 }
