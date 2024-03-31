@@ -25,7 +25,7 @@ public class LocalConfig {
     @Bean
     boolean instantiateDatabase() throws ParseException {
 		
-    	if(strategy != "update") {
+    	if(strategy.equals("update")) {
     		return false;
     	}
     	
