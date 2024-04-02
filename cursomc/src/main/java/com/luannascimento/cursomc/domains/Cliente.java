@@ -6,8 +6,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.luannascimento.cursomc.domains.enums.Perfil;
 import com.luannascimento.cursomc.domains.enums.TipoCliente;
 
 import jakarta.persistence.CascadeType;
@@ -15,17 +17,16 @@ import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @Entity
 public class Cliente implements Serializable {
 
@@ -50,6 +51,10 @@ public class Cliente implements Serializable {
 	@CollectionTable(name = "Telefone")
 	private Set<String> telefones = new HashSet<String>();
 
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "Perfis")
+	private Set<Integer> perfis = new HashSet<>();
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
@@ -62,6 +67,7 @@ public class Cliente implements Serializable {
 		this.cpfCnpj = cpfCnpj;
 		this.tipo = (tipo ==null) ? null : tipo.getCod();
 		this.senha = senha;
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	
@@ -70,9 +76,12 @@ public class Cliente implements Serializable {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-	
+		addPerfil(Perfil.CLIENTE);
 	}
 	
+	public Cliente() {
+		addPerfil(Perfil.CLIENTE);
+	}
 
 	
 	public TipoCliente getTipo() {
@@ -83,6 +92,15 @@ public class Cliente implements Serializable {
 		this.tipo = tipo.getCod();
 
 	}
+	
+	public Set<Perfil> getPerfis(){
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+	}
+	
+	public void addPerfil(Perfil perfil) {
+		perfis.add(perfil.getCod());
+	}
+	
 
 	@Override
 	public boolean equals(Object obj) {
