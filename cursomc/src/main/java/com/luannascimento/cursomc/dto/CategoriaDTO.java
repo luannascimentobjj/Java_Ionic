@@ -27,4 +27,6 @@ public class CategoriaDTO implements Serializable {
 		nome = categoria.getNome();
 	}
 
+	
+	
 }
