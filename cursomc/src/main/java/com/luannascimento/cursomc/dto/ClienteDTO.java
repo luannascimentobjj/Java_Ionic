@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.luannascimento.cursomc.domains.Cliente;
 import com.luannascimento.cursomc.services.validation.ClienteBusiness;
 
